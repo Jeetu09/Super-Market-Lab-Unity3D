@@ -3,6 +3,12 @@ using UnityEngine;
 
 public class CarAnimEnd : MonoBehaviour
 {
+    [Header("Car Player disable")]
+    public GameObject CarPlayerDisable;
+
+    [Header("Friend enable")]
+    public GameObject frendEnable;
+
     [Header("Animation End Event")]
     public GameObject CamOne;
     public GameObject CamTwo;
@@ -27,6 +33,7 @@ public class CarAnimEnd : MonoBehaviour
     void Start()
     {
         CamtwoPanel.SetActive(false);
+        frendEnable.SetActive(false);
     }
 
     void Update()
@@ -59,6 +66,8 @@ public class CarAnimEnd : MonoBehaviour
     {
         ThirdCam.SetActive(false);
         MainPlayerEnable.SetActive(true);
+        CarPlayerDisable.SetActive(false);
+        frendEnable.SetActive(true);
         PostProcessingChange.PlayerStartedEffect();
         rotateWheels = false;
     }
