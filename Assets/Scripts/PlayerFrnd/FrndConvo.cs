@@ -39,6 +39,11 @@ public class FrndConvo : MonoBehaviour
     [Header("Animation")]
     public Animator PlayerIdl;
 
+    [Header("Press E to open UI")]
+    public GameObject PressE;
+    public GameObject MainInstruction;
+    public GameObject FrndToTroley;
+
     void Start()
     {
         FrndCam.SetActive(false);
@@ -49,14 +54,22 @@ public class FrndConvo : MonoBehaviour
         PlayerFirstDia.text = "";
 
         FrndFirstDia.alpha = 1;
+        PressE.SetActive(false);
+        FrndToTroley.SetActive(false);
+
     }
 
     void Update()
     {
+        
         float distance = Vector3.Distance(PlayerModel.position, FrndModel.position);
 
         if (distance <= 2f && !isNearFrnd)
         {
+            PressE.SetActive(true);
+            PressE.transform.LookAt(PlayerCam.transform);
+            PressE.transform.Rotate(0, 180f, 0);
+
             if (Input.GetKeyDown(KeyCode.E))
             {
                 PlayerIdl.SetTrigger("stopwalk");
@@ -68,7 +81,12 @@ public class FrndConvo : MonoBehaviour
 
                 playerController.enabled = false;
                 StartCoroutine(StartConversation());
+                MainInstruction.SetActive(false);
             }
+        }
+        else
+        {
+            PressE.SetActive(false);
         }
     }
 
@@ -108,6 +126,7 @@ public class FrndConvo : MonoBehaviour
         UI.SetActive(false);
 
         playerController.enabled = true;
+        FrndToTroley.SetActive(true);
     }
 
     IEnumerator TypeFloatingText(TextMeshProUGUI target, string line)

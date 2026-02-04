@@ -51,6 +51,8 @@ public class TrollyAttachment : MonoBehaviour
 
     public GameObject SecondUI;
 
+    public GameObject FrndToTrolleyOff;
+
 
 
 
@@ -96,6 +98,7 @@ public class TrollyAttachment : MonoBehaviour
                 Trolley.transform.localRotation = Quaternion.Euler(attachRotation);
 
                 Debug.Log("Trolley Attached");
+                FrndToTrolleyOff.SetActive(false);
                 SecondUI.SetActive(false);
                 Playercontroller.center = new Vector3(0f, 0.98f, 1f);
                 // Playercontroller.radius = 1f;
