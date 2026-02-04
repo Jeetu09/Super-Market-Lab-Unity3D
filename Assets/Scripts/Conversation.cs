@@ -28,6 +28,8 @@ public class Conversation : MonoBehaviour
     public Animator MainGate;
     public Animator CarAnimator;
 
+    public string userInput;
+
     // ✅ Reference to CarAnimEnd
     public CarAnimEnd carAnimEnd;
 
@@ -61,11 +63,13 @@ public class Conversation : MonoBehaviour
     public void OnButtonClick()
     {
         if (carPlayed) return;
+        
 
         if (inputField.text.Length > 2)
         {
             carPlayed = true;
             StartCoroutine(CarAndFinalGuard());
+            userInput = inputField.text;
         }
     }
 
