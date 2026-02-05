@@ -18,7 +18,7 @@ public class SecondLevel : MonoBehaviour
     public float triggerDistance = 1.5f;
 
     public GameObject PlayerCam;
-    public GameObject DairyCam;
+    public GameObject FruitCam;
 
 
     void Update()
@@ -48,6 +48,6 @@ public class SecondLevel : MonoBehaviour
 
         GetComponent<TrollyAttachment>().DisablePlayerControlsFirDairy();
         PlayerCam.SetActive(false);
-        DairyCam.SetActive(true);
+        FruitCam.SetActive(true);
     }
 }

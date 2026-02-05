@@ -16,28 +16,6 @@ public class DoorOpeningScript : MonoBehaviour
     public float triggerDistance2 = 1f;
     private bool hasPlayed = false;
 
-    [Header("UI")]
-    public GameObject instructionOne;  // The whole instruction panel
-    public TMP_Text InstructionTwo;    // The TMP text component
-    [TextArea] public string fullTextTwo; // Full message to display
-    public float typingSpeed = 0.03f;  // Delay between letters
-
-    [Header("Arrow")]
-    public GameObject DirectionArrow;   
-    void Start()
-    {
-        InstructionTwo.text = "";
-    }   
-
-
-    private IEnumerator TypeText()
-    {
-        foreach (char letter in fullTextTwo.ToCharArray())
-        {
-            InstructionTwo.text += letter;
-            yield return new WaitForSeconds(typingSpeed);
-        }
-    }
 
     private void Update()
     {
@@ -56,10 +34,6 @@ public class DoorOpeningScript : MonoBehaviour
             animator2.SetTrigger("CloseR"); // Trigger name in Animator
             hasPlayed = true;
 
-            // Hide the text after closing
-            instructionOne.SetActive(false);
-            InstructionTwo.text = "";  // Start empty
-            StartCoroutine(TypeText());
         }
     }
 }
