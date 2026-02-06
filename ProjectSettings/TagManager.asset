@@ -6,6 +6,9 @@ TagManager:
   tags:
   - CinemachineTarget
   - wall
+  - Vehicle
+  - Apple
+  - bananas
   layers:
   - Default
   - TransparentFX
