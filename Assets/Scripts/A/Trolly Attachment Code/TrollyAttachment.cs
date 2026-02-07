@@ -97,7 +97,6 @@ public class TrollyAttachment : MonoBehaviour
                 Trolley.transform.localRotation = Quaternion.Euler(attachRotation);
 
                 Debug.Log("Trolley Attached");
-                FrndToTrolleyOff.SetActive(false);
                 Playercontroller.center = new Vector3(0f, 0.98f, 1f);
                 // Playercontroller.radius = 1f;
                 isAttached = true;
