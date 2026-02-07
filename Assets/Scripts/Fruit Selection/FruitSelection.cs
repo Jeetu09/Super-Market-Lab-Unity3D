@@ -1,10 +1,12 @@
 ﻿
+
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FruitSelection : MonoBehaviour
 {
     [Header("Camera")]
-    [SerializeField] private Camera clickCamera; // drag the active camera
+    [SerializeField] private Camera clickCamera;
 
     [Header("UI")]
     [SerializeField] private GameObject bgImage;
@@ -13,13 +15,23 @@ public class FruitSelection : MonoBehaviour
     [SerializeField] private GameObject[] apples;
     [SerializeField] private GameObject[] bananas;
 
+    [Header("Green Indicators")]
+    [SerializeField] private Image greenApple;
+    [SerializeField] private Image greenBanana;
+
     private bool canClick = false;
 
     private int appleCount = 0;
     private int bananaCount = 0;
 
+    private const int appleLimit = 1;
+    private const int bananaLimit = 4;
+
     void Start()
     {
+        if (greenApple != null) greenApple.gameObject.SetActive(false);
+        if (greenBanana != null) greenBanana.gameObject.SetActive(false);
+
         if (clickCamera == null)
             Debug.LogError("Click Camera is NOT assigned!");
 
@@ -29,7 +41,6 @@ public class FruitSelection : MonoBehaviour
 
     void Update()
     {
-        // Allow clicking once BG is disabled
         if (!canClick && bgImage != null && !bgImage.activeSelf)
             canClick = true;
 
@@ -44,17 +55,26 @@ public class FruitSelection : MonoBehaviour
             {
                 GameObject clicked = hit.collider.gameObject;
 
-                if (IsApple(clicked))
+                // ✅ Apple
+                if (appleCount < appleLimit && IsApple(clicked))
                 {
                     appleCount++;
                     clicked.SetActive(false);
                     Debug.Log("Apples Selected: " + appleCount);
+
+                    if (appleCount == appleLimit && greenApple != null)
+                        greenApple.gameObject.SetActive(true);
                 }
-                else if (IsBanana(clicked))
+
+                // ✅ Banana
+                else if (bananaCount < bananaLimit && IsBanana(clicked))
                 {
                     bananaCount++;
                     clicked.SetActive(false);
                     Debug.Log("Bananas Selected: " + bananaCount);
+
+                    if (bananaCount == bananaLimit && greenBanana != null)
+                        greenBanana.gameObject.SetActive(true);
                 }
 
                 CheckAllFruits();
@@ -84,9 +104,9 @@ public class FruitSelection : MonoBehaviour
 
     void CheckAllFruits()
     {
-        if (appleCount == apples.Length && bananaCount == bananas.Length)
+        if (appleCount >= appleLimit && bananaCount >= bananaLimit)
         {
-            Debug.Log("✅ All fruits collected!");
+            Debug.Log("✅ Task Completed!");
         }
     }
 }
