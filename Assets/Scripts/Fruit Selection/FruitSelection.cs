@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class FruitSelection : MonoBehaviour
 {
+
+    TrollyAttachment trollyAttachment;
     public GameObject GuidingText;
 
     [Header("Camera")]
@@ -111,6 +113,14 @@ public class FruitSelection : MonoBehaviour
         {
             Debug.Log("✅ Task Completed!");
             GuidingText.SetActive(false);
+            Invoke("ResumeControls", 2f);
         }
+    }
+
+    public void ResumeControls()
+    {
+        trollyAttachment = FindObjectOfType<TrollyAttachment>();
+        trollyAttachment.EnablePlayerControls();
+        trollyAttachment.SwitchBackToMainCamera();
     }
 }

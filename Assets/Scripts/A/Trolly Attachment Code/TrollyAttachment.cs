@@ -231,20 +231,20 @@ public class TrollyAttachment : MonoBehaviour
     // ✅ Opposite of SwitchCamera
     public void SwitchBackToMainCamera()
     {
-        RightHand.weight = 1f;
+        //RightHand.weight = 1f;
         if (AlternateCamera != null) AlternateCamera.SetActive(false);
         if (MainCamera != null) MainCamera.SetActive(true);
 
-        Debug.Log("Switched back to Main Camera.");
+        //Debug.Log("Switched back to Main Camera.");
 
-        Trolley.transform.SetParent(null);
-        Trolley.transform.SetParent(TrolleyReffObj);
-        Trolley.transform.localPosition = offset;
-        Trolley.transform.localRotation = Quaternion.Euler(attachRotation); // ✅ Apply attach rotation
+        //Trolley.transform.SetParent(null);
+        //Trolley.transform.SetParent(TrolleyReffObj);
+        //Trolley.transform.localPosition = offset;
+        //Trolley.transform.localRotation = Quaternion.Euler(attachRotation); // ✅ Apply attach rotation
 
 
-        Debug.Log("Trolley Attached Agaon");
-        popupUIShop.SetActive(false);
+        //Debug.Log("Trolley Attached Agaon");
+        //popupUIShop.SetActive(false);
 
     }
 }
