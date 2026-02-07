@@ -16,7 +16,6 @@ public class DoorOpeningScript : MonoBehaviour
     public float triggerDistance2 = 1f;
     private bool hasPlayed = false;
 
-
     private void Update()
     {
         float distance = Vector3.Distance(Player.transform.position, Door.transform.position);
@@ -33,7 +32,6 @@ public class DoorOpeningScript : MonoBehaviour
             animator.SetTrigger("Close");   // Trigger name in Animator
             animator2.SetTrigger("CloseR"); // Trigger name in Animator
             hasPlayed = true;
-
         }
     }
 }

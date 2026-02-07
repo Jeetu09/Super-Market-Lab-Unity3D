@@ -127,9 +127,8 @@ public class TrollyAttachment : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 ArrowShop.SetActive(false);
-                Trolley.transform.SetParent(null);
-                Trolley.transform.position = detachPosition;
-                Trolley.transform.rotation = Quaternion.Euler(detachRotation); // ✅ Apply detach rotation
+                //Trolley.transform.position = detachPosition;
+                //Trolley.transform.rotation = Quaternion.Euler(detachRotation); // ✅ Apply detach rotation
                 DisablePlayerControls();
                 SwitchCamera();
                 popupUIShop.SetActive(false);
@@ -159,8 +158,8 @@ public class TrollyAttachment : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
-        LeftHand.weight = 0f;
-        RightHand.weight = 0f;
+        //LeftHand.weight = 0f;
+        //RightHand.weight = 0f;
 
         if (playerController != null)
             playerController.enabled = false;
@@ -174,7 +173,7 @@ public class TrollyAttachment : MonoBehaviour
         if (Player != null)
         {
             Player.transform.position = newPlayerPosition;
-            Player.transform.rotation = Quaternion.Euler(newPlayerRotation);
+            //Player.transform.rotation = Quaternion.Euler(newPlayerRotation);
         }
 
         // ❌ Removed disabling all MainCamera scripts

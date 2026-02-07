@@ -5,11 +5,14 @@ using UnityEngine.UI;
 
 public class FruitSelection : MonoBehaviour
 {
+    public GameObject GuidingText;
+
     [Header("Camera")]
     [SerializeField] private Camera clickCamera;
 
     [Header("UI")]
     [SerializeField] private GameObject bgImage;
+    
 
     [Header("Fruits")]
     [SerializeField] private GameObject[] apples;
@@ -107,6 +110,7 @@ public class FruitSelection : MonoBehaviour
         if (appleCount >= appleLimit && bananaCount >= bananaLimit)
         {
             Debug.Log("✅ Task Completed!");
+            GuidingText.SetActive(false);
         }
     }
 }
