@@ -51,6 +51,7 @@ public class TrollyAttachment : MonoBehaviour
 
 
     public GameObject FrndToTrolleyOff;
+    public GameObject frndToTrolleyUI;
 
 
 
@@ -91,6 +92,7 @@ public class TrollyAttachment : MonoBehaviour
 
             if (!hasPlayed && Input.GetKeyDown(KeyCode.E))
             {
+                frndToTrolleyUI.SetActive(false);
                 Trolley.transform.SetParent(null);
                 Trolley.transform.SetParent(TrolleyReffObj);
                 Trolley.transform.localPosition = offset;
