@@ -32,6 +32,9 @@ public class FruitSelection : MonoBehaviour
     private const int appleLimit = 1;
     private const int bananaLimit = 4;
 
+    [Header("Congratulations Text")]
+    public GameObject conganimation;
+
     void Start()
     {
         if (greenApple != null) greenApple.gameObject.SetActive(false);
@@ -122,5 +125,6 @@ public class FruitSelection : MonoBehaviour
         trollyAttachment = FindObjectOfType<TrollyAttachment>();
         trollyAttachment.EnablePlayerControls();
         trollyAttachment.SwitchBackToMainCamera();
+        conganimation.SetActive(true);
     }
 }
