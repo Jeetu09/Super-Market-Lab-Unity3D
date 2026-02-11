@@ -16,7 +16,6 @@ public class CarAnimEnd : MonoBehaviour
     public GameObject CamtwoPanel;
     public GameObject ThirdCam;
     public GameObject MainPlayerEnable;
-    public GameObject MainUI;
 
     [Header("Wheel Rotation")]
     public Transform WheelFL;
@@ -36,7 +35,6 @@ public class CarAnimEnd : MonoBehaviour
     {
         CamtwoPanel.SetActive(false);
         frendEnable.SetActive(false);
-        MainUI.SetActive(false);
     }
 
     void Update()

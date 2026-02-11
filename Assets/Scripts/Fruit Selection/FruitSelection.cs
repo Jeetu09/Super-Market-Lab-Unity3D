@@ -1,12 +1,12 @@
 ﻿
-
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class FruitSelection : MonoBehaviour
 {
-
-    TrollyAttachment trollyAttachment;
+    [Header("References")]
+    [SerializeField] private TrollyAttachment trollyAttachment;
     public GameObject GuidingText;
 
     [Header("Camera")]
@@ -14,7 +14,6 @@ public class FruitSelection : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] private GameObject bgImage;
-    
 
     [Header("Fruits")]
     [SerializeField] private GameObject[] apples;
@@ -24,7 +23,18 @@ public class FruitSelection : MonoBehaviour
     [SerializeField] private Image greenApple;
     [SerializeField] private Image greenBanana;
 
+    [Header("Congratulations Text")]
+    public GameObject conganimation;
+
+    [Header("Jam UI")]
+    public GameObject JamUI;
+
+    [Header("Fruit counter")]
+    public TextMeshProUGUI appleCounterText;
+    public TextMeshProUGUI bananaCounterText;
+
     private bool canClick = false;
+    private bool taskCompleted = false; // ⭐ prevents multiple triggers
 
     private int appleCount = 0;
     private int bananaCount = 0;
@@ -32,19 +42,15 @@ public class FruitSelection : MonoBehaviour
     private const int appleLimit = 1;
     private const int bananaLimit = 4;
 
-    [Header("Congratulations Text")]
-    public GameObject conganimation;
-
     void Start()
     {
-        if (greenApple != null) greenApple.gameObject.SetActive(false);
-        if (greenBanana != null) greenBanana.gameObject.SetActive(false);
+        JamUI.SetActive(false);
+        conganimation.SetActive(false);
 
-        if (clickCamera == null)
-            Debug.LogError("Click Camera is NOT assigned!");
+        if (greenApple) greenApple.gameObject.SetActive(false);
+        if (greenBanana) greenBanana.gameObject.SetActive(false);
 
-        if (bgImage == null)
-            Debug.LogError("BgImage is NOT assigned!");
+        UpdateCounterUI();
     }
 
     void Update()
@@ -52,42 +58,56 @@ public class FruitSelection : MonoBehaviour
         if (!canClick && bgImage != null && !bgImage.activeSelf)
             canClick = true;
 
-        if (!canClick || clickCamera == null) return;
+        if (!canClick || clickCamera == null || taskCompleted)
+            return;
 
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = clickCamera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out RaycastHit hit))
             {
                 GameObject clicked = hit.collider.gameObject;
 
-                // ✅ Apple
+                // 🍎 Apple
                 if (appleCount < appleLimit && IsApple(clicked))
                 {
                     appleCount++;
                     clicked.SetActive(false);
-                    Debug.Log("Apples Selected: " + appleCount);
 
-                    if (appleCount == appleLimit && greenApple != null)
+                    if (appleCount == appleLimit && greenApple)
+                    {
                         greenApple.gameObject.SetActive(true);
+                        appleCounterText.gameObject.SetActive(false);
+                    }
+
+                    UpdateCounterUI();
                 }
 
-                // ✅ Banana
+                // 🍌 Banana
                 else if (bananaCount < bananaLimit && IsBanana(clicked))
                 {
                     bananaCount++;
                     clicked.SetActive(false);
-                    Debug.Log("Bananas Selected: " + bananaCount);
 
-                    if (bananaCount == bananaLimit && greenBanana != null)
+                    if (bananaCount == bananaLimit && greenBanana)
+                    {
                         greenBanana.gameObject.SetActive(true);
+                        bananaCounterText.gameObject.SetActive(false);
+                    }
+
+                    UpdateCounterUI();
                 }
 
                 CheckAllFruits();
             }
         }
+    }
+
+    void UpdateCounterUI()
+    {
+        appleCounterText.text = appleCount + "/" + appleLimit;
+        bananaCounterText.text = bananaCount + "/" + bananaLimit;
     }
 
     bool IsApple(GameObject obj)
@@ -112,19 +132,45 @@ public class FruitSelection : MonoBehaviour
 
     void CheckAllFruits()
     {
-        if (appleCount >= appleLimit && bananaCount >= bananaLimit)
+        if (!taskCompleted && appleCount >= appleLimit && bananaCount >= bananaLimit)
         {
+            taskCompleted = true; // ⭐ stops repeating
+
             Debug.Log("✅ Task Completed!");
             GuidingText.SetActive(false);
-            Invoke("ResumeControls", 2f);
+
+            Invoke(nameof(ResumeControls), 2f);
         }
     }
 
     public void ResumeControls()
     {
-        trollyAttachment = FindObjectOfType<TrollyAttachment>();
-        trollyAttachment.EnablePlayerControls();
-        trollyAttachment.SwitchBackToMainCamera();
+        CancelInvoke(); // ⭐ extra safety
+
+        if (trollyAttachment != null)
+        {
+            trollyAttachment.EnablePlayerControls();
+            trollyAttachment.SwitchBackToMainCamera();
+        }
+
         conganimation.SetActive(true);
+
+        Invoke(nameof(JamEvent), 10f);
+    }
+
+    public void JamEvent()
+    {
+        JamUI.SetActive(true);
+
+        if (trollyAttachment != null)
+            trollyAttachment.DisablePlayerControls();
+    }
+
+    public void JamNoButton()
+    {
+        JamUI.SetActive(false);
+
+        if (trollyAttachment != null)
+            trollyAttachment.EnablePlayerControls();
     }
 }

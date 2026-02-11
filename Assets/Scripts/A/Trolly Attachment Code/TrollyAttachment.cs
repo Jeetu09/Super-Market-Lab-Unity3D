@@ -171,11 +171,11 @@ public class TrollyAttachment : MonoBehaviour
             animationidle.SetTrigger("idle");
         }
 
-        if (Player != null)
-        {
-            Player.transform.position = newPlayerPosition;
-            //Player.transform.rotation = Quaternion.Euler(newPlayerRotation);
-        }
+        //if (Player != null)
+        //{
+        //    Player.transform.position = newPlayerPosition;
+        //    //Player.transform.rotation = Quaternion.Euler(newPlayerRotation);
+        //}
 
         // ❌ Removed disabling all MainCamera scripts
         // Let StarterAssets handle camera as usual
