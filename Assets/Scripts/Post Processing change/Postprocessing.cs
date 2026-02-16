@@ -6,14 +6,14 @@ public class Postprocessing : MonoBehaviour
 {
     public Volume volume;
     Vignette vignette;
-    public Animator animation;
+    //public Animator animation;
     public Transform car;
 
     void Start()
     {
         volume.profile.TryGet(out vignette);
         vignette.intensity.value = 0.42f;
-        animation.SetTrigger("ChangeCam");
+        //animation.SetTrigger("ChangeCam");
     }
 
     void LateUpdate()

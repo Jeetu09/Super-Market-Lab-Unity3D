@@ -31,6 +31,8 @@ public class CarAnimEnd : MonoBehaviour
     // ✅ Start as false
     public bool rotateWheels = false;
 
+    public Animator MainGatePoleAnimation;
+
     void Start()
     {
         CamtwoPanel.SetActive(false);
@@ -65,6 +67,7 @@ public class CarAnimEnd : MonoBehaviour
 
     public void EndOfMotionScene()
     {
+        MainGatePoleAnimation.SetTrigger("MainGateClose");
         ThirdCam.SetActive(false);
         MainPlayerEnable.SetActive(true);
         CarPlayerDisable.SetActive(false);
