@@ -12,6 +12,15 @@ public class JamLevel : MonoBehaviour
     [Header("Counter Manager")]
     bool isJamRange = false;
 
+    [Header("Jame Cam Switch")]
+    public GameObject JamCam;
+    public GameObject MainCamera;
+
+    void Start()
+    {
+        JamCam.SetActive(false);
+    }
+
     void Update()
     {
         float distance = Vector3.Distance(Player.position, DistanceDetector.position);
