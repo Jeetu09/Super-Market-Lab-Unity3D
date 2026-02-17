@@ -1,9 +1,13 @@
 ﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class JamCarousel : MonoBehaviour
 {
     public RectTransform[] jams;
+
+    [Header("UI Text")]
+    public TextMeshProUGUI resultText;
 
     [Header("Center Scale")]
     public float centerWidth = 1.2f;
@@ -30,6 +34,7 @@ public class JamCarousel : MonoBehaviour
         targetPositions = new Vector2[jams.Length];
         targetScales = new Vector3[jams.Length];
 
+        resultText.text = "";   // Clear at start
         UpdateTargets();
     }
 
@@ -49,11 +54,28 @@ public class JamCarousel : MonoBehaviour
         }
     }
 
+    public void BuyItem()
+    {
+        string selectedName = jams[currentIndex].name;
+
+        if (selectedName == "Ergo Jam")
+        {
+            Debug.Log("Correct Product");
+            //resultText.text = "Correct Product";
+        }
+        else
+        {
+            Debug.Log("Wrong Jam");
+            resultText.text = "This is not the Jam that I want.";
+        }
+    }
+
     public void Next()
     {
         if (currentIndex < jams.Length - 1)
         {
             currentIndex++;
+            resultText.text = "";   // Remove wrong text
             UpdateTargets();
         }
         else
@@ -67,6 +89,7 @@ public class JamCarousel : MonoBehaviour
         if (currentIndex > 0)
         {
             currentIndex--;
+            resultText.text = "";   // Remove wrong text
             UpdateTargets();
         }
         else
@@ -89,11 +112,6 @@ public class JamCarousel : MonoBehaviour
         isBouncing = false;
     }
 
-    public void BuyItem()
-    {
-        Debug.Log("Item Added: " + jams[currentIndex].name);
-    }
-
     void UpdateTargets()
     {
         for (int i = 0; i < jams.Length; i++)
@@ -103,13 +121,9 @@ public class JamCarousel : MonoBehaviour
             targetPositions[i] = new Vector2(offset * spacing, 0);
 
             if (i == currentIndex)
-            {
                 targetScales[i] = new Vector3(centerWidth, centerHeight, 1f);
-            }
             else
-            {
                 targetScales[i] = new Vector3(sideWidth, sideHeight, 1f);
-            }
         }
     }
 }
