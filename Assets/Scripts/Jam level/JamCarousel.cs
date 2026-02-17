@@ -1,12 +1,17 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class JamCarousel : MonoBehaviour
 {
     public RectTransform[] jams;
 
-    public float sideScale = 0.7f;
-    public float centerScale = 1.2f;
+    [Header("Center Scale")]
+    public float centerWidth = 1.2f;
+    public float centerHeight = 1.2f;
+
+    [Header("Side Scale")]
+    public float sideWidth = 0.8f;
+    public float sideHeight = 0.8f;
 
     public float spacing = 350f;
     public float smoothSpeed = 8f;
@@ -18,7 +23,6 @@ public class JamCarousel : MonoBehaviour
 
     private Vector2[] targetPositions;
     private Vector3[] targetScales;
-
     private bool isBouncing = false;
 
     void Start()
@@ -76,15 +80,12 @@ public class JamCarousel : MonoBehaviour
         if (isBouncing) yield break;
         isBouncing = true;
 
-        // move slightly
         for (int i = 0; i < jams.Length; i++)
             targetPositions[i] += new Vector2(direction * bounceAmount, 0);
 
         yield return new WaitForSeconds(bounceTime);
 
-        // move back
         UpdateTargets();
-
         isBouncing = false;
     }
 
@@ -98,12 +99,17 @@ public class JamCarousel : MonoBehaviour
         for (int i = 0; i < jams.Length; i++)
         {
             int offset = i - currentIndex;
+
             targetPositions[i] = new Vector2(offset * spacing, 0);
 
             if (i == currentIndex)
-                targetScales[i] = Vector3.one * centerScale;
+            {
+                targetScales[i] = new Vector3(centerWidth, centerHeight, 1f);
+            }
             else
-                targetScales[i] = Vector3.one * sideScale;
+            {
+                targetScales[i] = new Vector3(sideWidth, sideHeight, 1f);
+            }
         }
     }
 }
