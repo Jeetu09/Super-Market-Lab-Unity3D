@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class JamLevel : MonoBehaviour
@@ -9,30 +8,58 @@ public class JamLevel : MonoBehaviour
     [Header("Trolley Code Manager")]
     [SerializeField] private TrollyAttachment TrolleyCodeManager;
 
-    [Header("Counter Manager")]
     bool isJamRange = false;
 
-    [Header("Jame Cam Switch")]
+    [Header("Camera Switch")]
     public GameObject JamCam;
     public GameObject MainCamera;
+
+    [Header("Arrow Object")]
+    public GameObject Arrow;
+    public GameObject PressEUI;
 
     void Start()
     {
         JamCam.SetActive(false);
+        Arrow.SetActive(true);
+        PressEUI.SetActive(false);
     }
 
     void Update()
     {
-        float distance = Vector3.Distance(Player.position, DistanceDetector.position);
-        if (distance < 3 && isJamRange == false)
+        float sqrDistance = (Player.position - DistanceDetector.position).sqrMagnitude;
+
+        if (sqrDistance < 9f && !isJamRange)
         {
-            Debug.Log("Player is within 3 units of the Distance Detector.");
+            if (!PressEUI.activeSelf)
+            {
+                PressEUI.SetActive(true);
+                PressEUI.transform.LookAt(MainCamera.transform);
+                PressEUI.transform.Rotate(0, 180, 0);
+            }
+
+            Arrow.SetActive(true);
+
             if (Input.GetKeyDown(KeyCode.E))
             {
+                JamCam.SetActive(true);
+                MainCamera.SetActive(false);
+                PressEUI.SetActive(false);
+                Arrow.SetActive(false);
                 TrolleyCodeManager.DisablePlayerControls();
                 isJamRange = true;
             }
         }
+        else
+        {
+            PressEUI.SetActive(false);
+        }
     }
 
+    public void ExitJam()
+    {
+        TrolleyCodeManager.EnablePlayerControls();
+        JamCam.SetActive(false);
+        MainCamera.SetActive(true);
+    }
 }
