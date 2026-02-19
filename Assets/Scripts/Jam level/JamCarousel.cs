@@ -29,6 +29,10 @@ public class JamCarousel : MonoBehaviour
     private Vector3[] targetScales;
     private bool isBouncing = false;
 
+    [Header("UISetActive")]
+    public GameObject CurousalUI;
+    public GameObject TrolleyJamObject;
+
     void Start()
     {
         targetPositions = new Vector2[jams.Length];
@@ -62,6 +66,8 @@ public class JamCarousel : MonoBehaviour
         {
             Debug.Log("Correct Product");
             //resultText.text = "Correct Product";
+            TrolleyJamObject.SetActive(true);
+            CurousalUI.SetActive(false);
         }
         else
         {
