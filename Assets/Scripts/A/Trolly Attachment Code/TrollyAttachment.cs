@@ -225,7 +225,10 @@ public class TrollyAttachment : MonoBehaviour
 
     public void SwitchCamera()
     {
-        if (MainCamera != null) MainCamera.SetActive(false);
+        if (MainCamera != null)
+        {
+            MainCamera.SetActive(false);
+        } 
         if (AlternateCamera != null) AlternateCamera.SetActive(true);
     }
 
@@ -233,7 +236,12 @@ public class TrollyAttachment : MonoBehaviour
     public void SwitchBackToMainCamera()
     {
         //RightHand.weight = 1f;
-        if (AlternateCamera != null) AlternateCamera.SetActive(false);
+        if (AlternateCamera != null)
+        {
+            AlternateCamera.SetActive(false);
+
+        } 
+
         if (MainCamera != null) MainCamera.SetActive(true);
 
         //Debug.Log("Switched back to Main Camera.");

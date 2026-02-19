@@ -29,9 +29,14 @@ public class JamCarousel : MonoBehaviour
     private Vector3[] targetScales;
     private bool isBouncing = false;
 
+    public GameObject MainCam;
+    public GameObject JamCam;
+
     [Header("UISetActive")]
     public GameObject CurousalUI;
     public GameObject TrolleyJamObject;
+
+    [SerializeField] private TrollyAttachment TrolleyCodeManager;
 
     void Start()
     {
@@ -68,6 +73,9 @@ public class JamCarousel : MonoBehaviour
             //resultText.text = "Correct Product";
             TrolleyJamObject.SetActive(true);
             CurousalUI.SetActive(false);
+            TrolleyCodeManager.EnablePlayerControls();
+            MainCam.SetActive(true);
+            JamCam.SetActive(false);
         }
         else
         {

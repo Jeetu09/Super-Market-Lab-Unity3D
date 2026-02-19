@@ -31,11 +31,11 @@ public class JamLevel : MonoBehaviour
 
         if (sqrDistance < 9f && !isJamRange)
         {
+            Vector3 direction = PressEUI.transform.position - MainCamera.transform.position;
+            PressEUI.transform.rotation = Quaternion.LookRotation(direction);
             if (!PressEUI.activeSelf)
             {
                 PressEUI.SetActive(true);
-                PressEUI.transform.LookAt(MainCamera.transform);
-                PressEUI.transform.Rotate(0, 180, 0);
             }
 
             Arrow.SetActive(true);
@@ -56,10 +56,10 @@ public class JamLevel : MonoBehaviour
         }
     }
 
-    public void ExitJam()
-    {
-        TrolleyCodeManager.EnablePlayerControls();
-        JamCam.SetActive(false);
-        MainCamera.SetActive(true);
-    }
+    //public void ExitJam()
+    //{
+    //    TrolleyCodeManager.EnablePlayerControls();
+    //    JamCam.SetActive(false);
+    //    MainCamera.SetActive(true);
+    //}
 }
