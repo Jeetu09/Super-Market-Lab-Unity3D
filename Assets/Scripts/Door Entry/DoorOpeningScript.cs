@@ -16,12 +16,16 @@ public class DoorOpeningScript : MonoBehaviour
     public float triggerDistance2 = 1f;
     private bool hasPlayed = false;
 
+    FrndConvo frndConvo;
+
     private void Update()
     {
         float distance = Vector3.Distance(Player.transform.position, Door.transform.position);
         float distance2 = Vector3.Distance(Player.transform.position, Mat.transform.position);
+        frndConvo = FindObjectOfType<FrndConvo>();
 
-        if (distance < triggerDistance)
+
+        if (distance < triggerDistance && frndConvo.isMainGateMatEnabled == true)
         {
             animator.SetTrigger("Open");   // Trigger name in Animator
             animator2.SetTrigger("OpenR"); // Trigger name in Animator

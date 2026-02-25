@@ -44,6 +44,9 @@ public class FrndConvo : MonoBehaviour
     public GameObject MainInstruction;
     public GameObject FrndToTroley;
 
+    [Header("Main Gate Mat collider")]
+    public bool isMainGateMatEnabled = false;
+
     void Start()
     {
         FrndCam.SetActive(false);
@@ -127,6 +130,9 @@ public class FrndConvo : MonoBehaviour
 
         playerController.enabled = true;
         FrndToTroley.SetActive(true);
+        isMainGateMatEnabled = true;
+
+
     }
 
     IEnumerator TypeFloatingText(TextMeshProUGUI target, string line)
@@ -191,4 +197,5 @@ public class FrndConvo : MonoBehaviour
 
         text.gameObject.SetActive(false);
     }
+
 }
