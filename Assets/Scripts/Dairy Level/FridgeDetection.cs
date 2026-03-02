@@ -37,6 +37,7 @@ public class FridgeDetection : MonoBehaviour
                 PlayerCam.SetActive(false);
                 SwitchCam.SetActive(true);
                 FridgeAnim.SetTrigger("FridgeDoorAnim");
+                Player.SetActive(false);
             }
 
         }
