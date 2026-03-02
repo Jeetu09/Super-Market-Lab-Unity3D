@@ -13,6 +13,8 @@ public class FridgeDetection : MonoBehaviour
 
     [SerializeField] private TrollyAttachment PlayerDis;
 
+    public Animator FridgeAnim;
+
     [Header("Flags")]
     bool isPlayerInFridgeRange = false;
     // Start is called before the first frame update
@@ -34,6 +36,7 @@ public class FridgeDetection : MonoBehaviour
                 isPlayerInFridgeRange = true;
                 PlayerCam.SetActive(false);
                 SwitchCam.SetActive(true);
+                FridgeAnim.SetTrigger("FridgeDoorAnim");
             }
 
         }
