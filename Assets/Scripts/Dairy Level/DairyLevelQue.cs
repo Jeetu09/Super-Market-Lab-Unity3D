@@ -10,7 +10,7 @@ public class DairyLevelQue : MonoBehaviour
 
     [Header("UI Elements")]
     public Button nextButton;       // Button to enable after correct answer
-    public Text messageText;        // Text to show result message
+    public TextMeshProUGUI messageText;        // Text to show result message
 
     void Start()
     {
