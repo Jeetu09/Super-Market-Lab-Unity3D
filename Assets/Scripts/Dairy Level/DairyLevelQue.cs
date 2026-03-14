@@ -20,11 +20,13 @@ public class DairyLevelQue : MonoBehaviour
 
         public LayerMask clickableLayer;
 
+        public GameObject guidanceUI;   // NEW guidance UI
+
         public int counter = 0;
         public int maxCounter = 3;
     }
 
-    public Camera clickCamera;   // common camera (drag in inspector)
+    public Camera clickCamera;
 
     public QuestionElement[] questions;
 
@@ -38,6 +40,9 @@ public class DairyLevelQue : MonoBehaviour
         for (int i = 0; i < questions.Length; i++)
         {
             questions[i].mainPanel.SetActive(false);
+
+            if (questions[i].guidanceUI != null)
+                questions[i].guidanceUI.SetActive(false);
 
             int index = i;
             questions[i].submitButton.onClick.AddListener(() => SubmitAnswer(index));
@@ -79,15 +84,14 @@ public class DairyLevelQue : MonoBehaviour
         QuestionElement q = questions[index];
 
         if (q.funFactAnimator != null && q.triggerName != "")
-        {
             q.funFactAnimator.SetTrigger(q.triggerName);
-        }
 
-        // wait 14 seconds
         yield return new WaitForSeconds(14f);
 
-        // close panel after animation
         q.mainPanel.SetActive(false);
+
+        if (q.guidanceUI != null)
+            q.guidanceUI.SetActive(true);
 
         canClickObject = true;
     }
@@ -116,6 +120,9 @@ public class DairyLevelQue : MonoBehaviour
                 if (q.counter >= q.maxCounter)
                 {
                     canClickObject = false;
+
+                    if (q.guidanceUI != null)
+                        q.guidanceUI.SetActive(false);
 
                     StartCoroutine(StartNextQuestion());
                 }

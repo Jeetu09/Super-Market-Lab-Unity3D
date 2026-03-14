@@ -34577,6 +34577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b55ced06634697c43b7c61507b69bd50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clickCamera: {fileID: 173767004}
   questions:
   - mainPanel: {fileID: 655934194}
     indicatorText: {fileID: 546971333}
@@ -34587,6 +34588,7 @@ MonoBehaviour:
     clickableLayer:
       serializedVersion: 2
       m_Bits: 2048
+    guidanceUI: {fileID: 0}
     counter: 0
     maxCounter: 2
 --- !u!1 &919132148129999220
