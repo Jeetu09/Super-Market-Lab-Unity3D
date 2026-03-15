@@ -20,7 +20,7 @@ public class DairyLevelQue : MonoBehaviour
 
         public LayerMask clickableLayer;
 
-        public GameObject guidanceUI;   // NEW guidance UI
+        public GameObject guidanceUI;
 
         public int counter = 0;
         public int maxCounter = 3;
@@ -34,9 +34,14 @@ public class DairyLevelQue : MonoBehaviour
 
     bool canClickObject = false;
     bool answerSelected = false;
+    bool isAnswerCorrect = false;
+
+    public GameObject QNAPanel;
 
     void Start()
     {
+        QNAPanel.SetActive(false);
+
         for (int i = 0; i < questions.Length; i++)
         {
             questions[i].mainPanel.SetActive(false);
@@ -59,22 +64,30 @@ public class DairyLevelQue : MonoBehaviour
         q.indicatorText.text = "";
 
         answerSelected = false;
+        isAnswerCorrect = false;
         canClickObject = false;
     }
 
     public void AnswerButton(bool isCorrect)
     {
+        answerSelected = true;
+        isAnswerCorrect = isCorrect;
+
         if (isCorrect)
             questions[currentQuestion].indicatorText.text = "This is correct";
         else
             questions[currentQuestion].indicatorText.text = "Wrong answer";
-
-        answerSelected = true;
     }
 
     void SubmitAnswer(int index)
     {
         if (!answerSelected) return;
+
+        if (!isAnswerCorrect)
+        {
+            questions[currentQuestion].indicatorText.text = "Select the correct answer to continue";
+            return;
+        }
 
         StartCoroutine(PlayAnimation(index));
     }
@@ -143,6 +156,7 @@ public class DairyLevelQue : MonoBehaviour
         else
         {
             Debug.Log("All elements done");
+            QNAPanel.SetActive(true);
         }
     }
 
