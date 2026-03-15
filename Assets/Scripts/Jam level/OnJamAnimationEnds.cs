@@ -8,6 +8,7 @@ public class OnJamAnimationEnds : MonoBehaviour
 
     void Start()
     {
+        JamFunFact.SetActive(false);
         objectToEnable.SetActive(false);
     }
     public void OnAnimationEnd()

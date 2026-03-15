@@ -31,6 +31,11 @@ public class TwoQNA : MonoBehaviour
     int selectedAnswer = -1;
     int currentQuestion = 0;
 
+    public GameObject SwitchCam;
+    public GameObject MainCam;
+    public GameObject Player;
+    [SerializeField] private TrollyAttachment PlayerDis;
+
     void Start()
     {
         SetupButtons();
@@ -104,6 +109,10 @@ public class TwoQNA : MonoBehaviour
         else
         {
             Debug.Log("All questions completed!");
+            SwitchCam.SetActive(false);
+            MainCam.SetActive(true);
+            Player.SetActive(true);
+            PlayerDis.EnablePlayerControls();
         }
     }
 }
