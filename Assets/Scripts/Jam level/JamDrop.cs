@@ -9,10 +9,12 @@ public class JamDrop : MonoBehaviour, IDropHandler
     private static int correctCounter = 0; // shared counter
     public GameObject BgImage; // shared background image
     public GameObject button; // shared button
+    public GameObject BreadNavigation;
 
     void Start()
     {
         button.SetActive(false); // hide the button at the start
+        BreadNavigation.SetActive(false); // hide the bread navigation at the start
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -45,5 +47,6 @@ public class JamDrop : MonoBehaviour, IDropHandler
     public void CorrectButton()
     {
         BgImage.SetActive(false);
+        BreadNavigation.SetActive(true);
     }
 }

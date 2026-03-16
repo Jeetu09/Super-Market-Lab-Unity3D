@@ -25,6 +25,8 @@ public class BillingDialogue : MonoBehaviour
 
     [Header("Animatio")]
     public Animator FFAnimation;
+    public Animator RightDoor;
+    public Animator LeftDoor;
 
     string[] staffDialogues =
     {
@@ -127,11 +129,18 @@ public class BillingDialogue : MonoBehaviour
 
         yield return TypeText(staffDialogues[7], staffText);
 
+        ExitState();
+    }
+
+    void ExitState()
+    {
         Debug.Log("Conversation Ends");
         AllObj.SetActive(false);
         billmanage.EnablePlayer();
         trolleyObj.SetActive(false);
         trolleyObjBag.SetActive(true);
+        RightDoor.Play("Right Door");
+        LeftDoor.Play("Left Door Animation");
     }
 
     IEnumerator TypeText(string sentence, TMP_Text textBox)

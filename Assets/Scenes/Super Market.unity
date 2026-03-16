@@ -689,7 +689,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &23659174
 Transform:
   m_ObjectHideFlags: 0
@@ -1032,6 +1032,7 @@ MonoBehaviour:
   correctFruit: fresher
   BgImage: {fileID: 640359275}
   button: {fileID: 565945513}
+  BreadNavigation: {fileID: 23659173}
 --- !u!1 &57072537
 GameObject:
   m_ObjectHideFlags: 0
@@ -1636,6 +1637,7 @@ MonoBehaviour:
   correctFruit: in
   BgImage: {fileID: 640359275}
   button: {fileID: 565945513}
+  BreadNavigation: {fileID: 23659173}
 --- !u!1 &89941016
 GameObject:
   m_ObjectHideFlags: 0
@@ -7008,7 +7010,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &445844021
 Transform:
   m_ObjectHideFlags: 0
@@ -9826,6 +9828,7 @@ MonoBehaviour:
   correctFruit: ingrediant
   BgImage: {fileID: 640359275}
   button: {fileID: 565945513}
+  BreadNavigation: {fileID: 23659173}
 --- !u!64 &589383331
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -10453,6 +10456,7 @@ MonoBehaviour:
   correctFruit: i
   BgImage: {fileID: 640359275}
   button: {fileID: 565945513}
+  BreadNavigation: {fileID: 23659173}
 --- !u!4 &638142305 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -2278426216963786741, guid: 011245761423cdb4d90005e1ce4a227f, type: 3}
@@ -10561,6 +10565,8 @@ MonoBehaviour:
   trolleyObj: {fileID: 1568312646}
   trolleyObjBag: {fileID: 919132148357988785}
   FFAnimation: {fileID: 1231250939}
+  RightDoor: {fileID: 9014776603609418634}
+  LeftDoor: {fileID: 2050809774512967590}
 --- !u!1 &640359275
 GameObject:
   m_ObjectHideFlags: 0
@@ -23892,6 +23898,7 @@ MonoBehaviour:
   correctFruit: natural
   BgImage: {fileID: 640359275}
   button: {fileID: 565945513}
+  BreadNavigation: {fileID: 23659173}
 --- !u!1 &1301294901
 GameObject:
   m_ObjectHideFlags: 0
@@ -25839,6 +25846,7 @@ MonoBehaviour:
   correctFruit: Want
   BgImage: {fileID: 640359275}
   button: {fileID: 565945513}
+  BreadNavigation: {fileID: 23659173}
 --- !u!1 &1434565028
 GameObject:
   m_ObjectHideFlags: 0
@@ -27815,6 +27823,7 @@ MonoBehaviour:
   correctFruit: Them
   BgImage: {fileID: 640359275}
   button: {fileID: 565945513}
+  BreadNavigation: {fileID: 23659173}
 --- !u!1 &1556129155
 GameObject:
   m_ObjectHideFlags: 0
@@ -29364,6 +29373,7 @@ MonoBehaviour:
   correctFruit: a
   BgImage: {fileID: 640359275}
   button: {fileID: 565945513}
+  BreadNavigation: {fileID: 23659173}
 --- !u!65 &1636064293
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32252,6 +32262,7 @@ MonoBehaviour:
   correctFruit: with
   BgImage: {fileID: 640359275}
   button: {fileID: 565945513}
+  BreadNavigation: {fileID: 23659173}
 --- !u!1 &1743594922
 GameObject:
   m_ObjectHideFlags: 0
@@ -37588,6 +37599,7 @@ MonoBehaviour:
   correctFruit: 
   BgImage: {fileID: 640359275}
   button: {fileID: 565945513}
+  BreadNavigation: {fileID: 23659173}
 --- !u!64 &2036651081
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -41251,8 +41263,9 @@ GameObject:
   - component: {fileID: 2050809774512967589}
   - component: {fileID: 1079662025867473976}
   - component: {fileID: 1900772891}
+  - component: {fileID: 2050809774512967590}
   m_Layer: 0
-  m_Name: Cube.008
+  m_Name: Exit L Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46972,7 +46985,7 @@ Transform:
   m_GameObject: {fileID: 281855663670783181}
   serializedVersion: 2
   m_LocalRotation: {x: -0.000000053385076, y: 0.7071068, z: 0.70710677, w: 0.00000005338508}
-  m_LocalPosition: {x: 2.55, y: 3.5078642, z: -18.84}
+  m_LocalPosition: {x: 2.55, y: 3.507864, z: -18.84}
   m_LocalScale: {x: 157.20076, y: 41.644295, z: 451.01282}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -49555,6 +49568,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 281855663670783181}
   m_Mesh: {fileID: 8552134717624371188, guid: 64caddc159ec59c4d93f14237744ba3f, type: 3}
+--- !u!95 &2050809774512967590
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281855663670783181}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bee9ef28a3d9c3b4d9ce3c12ebcde3a0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!33 &2050809774887233085
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -67067,7 +67101,7 @@ Transform:
   m_GameObject: {fileID: 9014776603609418633}
   serializedVersion: 2
   m_LocalRotation: {x: -0.000000053385076, y: 0.7071068, z: 0.70710677, w: 0.00000005338508}
-  m_LocalPosition: {x: 5.377614, y: 3.5078642, z: -18.84}
+  m_LocalPosition: {x: 5.377614, y: 3.507864, z: -18.84}
   m_LocalScale: {x: 157.20076, y: 41.644295, z: 451.01282}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -81159,13 +81193,35 @@ GameObject:
   - component: {fileID: 1703912660269032179}
   - component: {fileID: 8102382927382067105}
   - component: {fileID: 1988967838}
+  - component: {fileID: 9014776603609418634}
   m_Layer: 0
-  m_Name: Cube.007
+  m_Name: Exit R Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
+--- !u!95 &9014776603609418634
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9014776603609418633}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3d4e632cbc9cee740b4cc8938874dab4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &9014776604254511633
 GameObject:
   m_ObjectHideFlags: 0
