@@ -34,10 +34,12 @@ public class TwoQNA : MonoBehaviour
     public GameObject SwitchCam;
     public GameObject MainCam;
     public GameObject Player;
+    public GameObject DairyTrolleyObj;
     [SerializeField] private TrollyAttachment PlayerDis;
 
     void Start()
     {
+        DairyTrolleyObj.SetActive(false);
         SetupButtons();
 
         // Enable only first question
@@ -113,6 +115,7 @@ public class TwoQNA : MonoBehaviour
             MainCam.SetActive(true);
             Player.SetActive(true);
             PlayerDis.EnablePlayerControls();
+            DairyTrolleyObj.SetActive(true);
         }
     }
 }
