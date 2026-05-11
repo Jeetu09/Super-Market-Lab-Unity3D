@@ -27,7 +27,7 @@ public class FruitSelection : MonoBehaviour
     public GameObject conganimation;
 
     [Header("Jam UI")]
-    public GameObject JamUI;
+    public GameObject JamManager;
 
     [Header("Fruit counter")]
     public TextMeshProUGUI appleCounterText;
@@ -44,7 +44,7 @@ public class FruitSelection : MonoBehaviour
 
     void Start()
     {
-        JamUI.SetActive(false);
+        JamManager.SetActive(false);
         conganimation.SetActive(false);
 
         if (greenApple) greenApple.gameObject.SetActive(false);
@@ -155,22 +155,12 @@ public class FruitSelection : MonoBehaviour
 
         conganimation.SetActive(true);
 
-        Invoke(nameof(JamEvent), 10f);
+        Invoke(nameof(JamEvent), 3f);
     }
 
     public void JamEvent()
     {
-        JamUI.SetActive(true);
-
         if (trollyAttachment != null)
-            trollyAttachment.DisablePlayerControls();
-    }
-
-    public void JamNoButton()
-    {
-        JamUI.SetActive(false);
-
-        if (trollyAttachment != null)
-            trollyAttachment.EnablePlayerControls();
+            JamManager.SetActive(true);
     }
 }
