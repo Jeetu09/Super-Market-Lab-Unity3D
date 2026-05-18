@@ -27,7 +27,6 @@ public class DairyLevelQue : MonoBehaviour
     }
 
     public Camera clickCamera;
-
     public QuestionElement[] questions;
 
     int currentQuestion = 0;
@@ -99,9 +98,16 @@ public class DairyLevelQue : MonoBehaviour
         if (q.funFactAnimator != null && q.triggerName != "")
             q.funFactAnimator.SetTrigger(q.triggerName);
 
-        yield return new WaitForSeconds(14f);
+        yield return null;
+    }
 
-        q.mainPanel.SetActive(false);
+    // Button on FunFact animation calls this
+    public void CloseFunFact()
+    {
+        QuestionElement q = questions[currentQuestion];
+
+        if (q.mainPanel != null)
+            q.mainPanel.SetActive(false);
 
         if (q.guidanceUI != null)
             q.guidanceUI.SetActive(true);

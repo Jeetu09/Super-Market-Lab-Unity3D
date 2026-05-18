@@ -44,7 +44,9 @@ public class FruitSelection : MonoBehaviour
 
     void Start()
     {
-        JamManager.SetActive(false);
+       
+
+        //JamManager.SetActive(false);
         conganimation.SetActive(false);
 
         if (greenApple) greenApple.gameObject.SetActive(false);
@@ -149,18 +151,21 @@ public class FruitSelection : MonoBehaviour
 
         if (trollyAttachment != null)
         {
-            trollyAttachment.EnablePlayerControls();
+            conganimation.SetActive(true);
             trollyAttachment.SwitchBackToMainCamera();
         }
+    }
 
-        conganimation.SetActive(true);
+    public void correctBtn()
+    {
+        trollyAttachment.EnablePlayerControls();
+        JamEvent();
 
-        Invoke(nameof(JamEvent), 3f);
     }
 
     public void JamEvent()
     {
-        if (trollyAttachment != null)
-            JamManager.SetActive(true);
+        //if (trollyAttachment != null)
+            //JamManager.SetActive(true);
     }
 }

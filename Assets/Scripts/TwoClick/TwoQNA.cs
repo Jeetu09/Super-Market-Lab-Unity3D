@@ -1,7 +1,7 @@
-using UnityEngine;
+
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class TwoQNA : MonoBehaviour
 {
@@ -12,6 +12,7 @@ public class TwoQNA : MonoBehaviour
         public TMP_Text questionText;
         public TMP_Text indicatorText;
         public Button submitButton;
+
         public Animator funFactAnimator;
         public string triggerName = "Play";
 
@@ -27,7 +28,6 @@ public class TwoQNA : MonoBehaviour
 
     public QuestionElement[] questions;
 
-
     int selectedAnswer = -1;
     int currentQuestion = 0;
 
@@ -35,6 +35,7 @@ public class TwoQNA : MonoBehaviour
     public GameObject MainCam;
     public GameObject Player;
     public GameObject DairyTrolleyObj;
+
     [SerializeField] private TrollyAttachment PlayerDis;
 
     void Start()
@@ -42,7 +43,6 @@ public class TwoQNA : MonoBehaviour
         DairyTrolleyObj.SetActive(false);
         SetupButtons();
 
-        // Enable only first question
         for (int i = 0; i < questions.Length; i++)
         {
             questions[i].panel.SetActive(i == 0);
@@ -87,9 +87,9 @@ public class TwoQNA : MonoBehaviour
         if (isCorrect)
         {
             questions[qIndex].indicatorText.text = "Correct Answer";
-            questions[qIndex].funFactAnimator.SetTrigger(questions[qIndex].triggerName);
 
-            StartCoroutine(NextQuestionFlow(qIndex));
+            if (questions[qIndex].funFactAnimator != null)
+                questions[qIndex].funFactAnimator.SetTrigger(questions[qIndex].triggerName);
         }
         else
         {
@@ -97,23 +97,25 @@ public class TwoQNA : MonoBehaviour
         }
     }
 
-    IEnumerator NextQuestionFlow(int qIndex)
+    // Fun Fact button will call this
+    public void ContinueAfterAnimation()
     {
-        yield return new WaitForSeconds(14f);
+        questions[currentQuestion].panel.SetActive(false);
 
-        questions[qIndex].panel.SetActive(false);
-
-        if (qIndex + 1 < questions.Length)
+        if (currentQuestion + 1 < questions.Length)
         {
-            questions[qIndex + 1].panel.SetActive(true);
+            currentQuestion++;
+            questions[currentQuestion].panel.SetActive(true);
             selectedAnswer = -1;
         }
         else
         {
             Debug.Log("All questions completed!");
+
             SwitchCam.SetActive(false);
             MainCam.SetActive(true);
             Player.SetActive(true);
+
             PlayerDis.EnablePlayerControls();
             DairyTrolleyObj.SetActive(true);
         }

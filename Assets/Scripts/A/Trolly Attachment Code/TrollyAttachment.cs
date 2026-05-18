@@ -47,7 +47,6 @@ public class TrollyAttachment : MonoBehaviour
     public GameObject popupUIShop;      // UI element (Canvas/Image)
 
     public GameObject Arrow;
-    public GameObject ArrowShop;
 
 
     public GameObject FrndToTrolleyOff;
@@ -67,7 +66,6 @@ public class TrollyAttachment : MonoBehaviour
     void Start()
     {
         Arrow.SetActive(true);
-        ArrowShop.SetActive(false);
          popupUI.SetActive(true); // Hide at start
         LeftHand.weight = 0f;
         RightHand.weight = 0f;
@@ -106,7 +104,6 @@ public class TrollyAttachment : MonoBehaviour
 
                 popupUI.SetActive(false); // hide once attached
                 Arrow.SetActive(false);
-                ArrowShop.SetActive(true);
 
                 Playercontroller.enabled = false;  
                 Player.transform.position = new Vector3(-2.218f, 0.1192473f, 12.579f);  
@@ -127,7 +124,6 @@ public class TrollyAttachment : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.E))
             {
-                ArrowShop.SetActive(false);
                 //Trolley.transform.position = detachPosition;
                 //Trolley.transform.rotation = Quaternion.Euler(detachRotation); // ✅ Apply detach rotation
                 DisablePlayerControls();

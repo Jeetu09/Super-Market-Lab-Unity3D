@@ -35,6 +35,8 @@ public class Conversation : MonoBehaviour
 
     void Start()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         ThirdCam.SetActive(false);
         PlayeBox.SetActive(false);
 

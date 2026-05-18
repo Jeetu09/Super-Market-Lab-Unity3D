@@ -114,14 +114,16 @@ public class BillingDialogue : MonoBehaviour
     public void WillButtonClicked()
     {
         grammarButtons.SetActive(false);
+        FFAnimation.Play("New Animation");
+    }
+
+    public void PressBtn()
+    {
         StartCoroutine(CardConversation());
     }
 
     IEnumerator CardConversation()
     {
-        FFAnimation.Play("New Animation");
-        yield return new WaitForSeconds(11);
-
         yield return TypeText(staffDialogues[5], staffText);
         yield return TypeText(staffDialogues[6], staffText);
 

@@ -1,6 +1,4 @@
 
-
-
 using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -14,9 +12,14 @@ public class DropSlot : MonoBehaviour, IDropHandler
 
     void Start()
     {
+        
         button.SetActive(false); // hide the button at the start
     }
-
+    void Update()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
     public void OnDrop(PointerEventData eventData)
     {
         
@@ -48,8 +51,7 @@ public class DropSlot : MonoBehaviour, IDropHandler
     public void CorrectButton()
     {
             BgImage.SetActive(false);
-        
-
-        
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 }

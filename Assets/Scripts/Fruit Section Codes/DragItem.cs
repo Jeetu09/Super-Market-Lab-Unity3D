@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
@@ -7,7 +8,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     private CanvasGroup canvasGroup;
     private RectTransform rectTransform;
-    private Vector3 startPos;
+    private Vector2 startPos;
 
     [HideInInspector] public bool isDropped = false;
 
@@ -15,7 +16,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         canvasGroup = GetComponent<CanvasGroup>();
         rectTransform = GetComponent<RectTransform>();
-        startPos = rectTransform.position;
+        startPos = rectTransform.anchoredPosition; // store start position
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -36,10 +37,9 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         canvasGroup.blocksRaycasts = true;
 
-        // If not placed in slot → go back
         if (!isDropped)
         {
-            rectTransform.position = startPos;
+            rectTransform.anchoredPosition = startPos; // return to start
             Debug.Log("Wrong placement!");
         }
     }

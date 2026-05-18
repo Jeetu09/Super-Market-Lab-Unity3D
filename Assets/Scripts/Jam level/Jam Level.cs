@@ -15,13 +15,11 @@ public class JamLevel : MonoBehaviour
     public GameObject MainCamera;
 
     [Header("Arrow Object")]
-    public GameObject Arrow;
     public GameObject PressEUI;
 
     void Start()
     {
         JamCam.SetActive(false);
-        Arrow.SetActive(true);
         PressEUI.SetActive(false);
     }
 
@@ -38,14 +36,12 @@ public class JamLevel : MonoBehaviour
                 PressEUI.SetActive(true);
             }
 
-            Arrow.SetActive(true);
 
             if (Input.GetKeyDown(KeyCode.E))
             {
                 JamCam.SetActive(true);
                 MainCamera.SetActive(false);
                 PressEUI.SetActive(false);
-                Arrow.SetActive(false);
                 TrolleyCodeManager.DisablePlayerControls();
                 isJamRange = true;
             }
