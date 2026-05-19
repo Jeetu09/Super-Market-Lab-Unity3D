@@ -17,7 +17,6 @@ public class FridgeDetection : MonoBehaviour
 
     [Header("Guiding UI")]
     public GameObject PressEUI;
-    public GameObject NavigatingBar;
 
     [Header("Flags")]
     bool isPlayerInFridgeRange = false;
@@ -34,8 +33,13 @@ public class FridgeDetection : MonoBehaviour
         float distance = Vector3.Distance(Player.transform.position, Fridge.transform.position);
         if (distance <= detectionRange && isPlayerInFridgeRange == false)
         {
-            PressEUI.SetActive(true);
-            NavigatingBar.SetActive(false);
+            Vector3 direction = PressEUI.transform.position - PlayerCam.transform.position;
+            PressEUI.transform.rotation = Quaternion.LookRotation(direction);
+            if (!PressEUI.activeSelf)
+            {
+                PressEUI.SetActive(true);
+            }
+
             Debug.Log("Player is in range of the fridge.");
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -49,6 +53,11 @@ public class FridgeDetection : MonoBehaviour
                 Player.SetActive(false);
             }
 
+        }
+
+        else
+        {
+            PressEUI.SetActive(false);
         }
     }
 }

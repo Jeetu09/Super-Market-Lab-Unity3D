@@ -5,6 +5,7 @@ public class OnJamAnimationEnds : MonoBehaviour
 {
     public GameObject objectToEnable;
     public GameObject JamFunFact;
+    SectionCount sectionCount;
 
     void Start()
     {
@@ -20,6 +21,7 @@ public class OnJamAnimationEnds : MonoBehaviour
     public void OnAninmationTotalEnds()
     {
         JamFunFact.SetActive(false);
+        FindObjectOfType<SectionCount>().IncreaseJamSectionCount();
     }
 
 

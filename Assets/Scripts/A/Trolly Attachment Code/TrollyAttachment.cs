@@ -22,7 +22,7 @@ public class TrollyAttachment : MonoBehaviour
     [Header("Rig Settings")]
     public TwoBoneIKConstraint LeftHand;
     public TwoBoneIKConstraint RightHand;
-    public float weightChangeSpeed = 2f;
+    public float weightChangeSpeed = 5f;
 
     [Header("Player & Camera")]
     public GameObject Player;

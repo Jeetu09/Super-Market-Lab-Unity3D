@@ -35,13 +35,11 @@ public class JamCarousel : MonoBehaviour
     [Header("UISetActive")]
     public GameObject CurousalUI;
     public GameObject TrolleyJamObject;
-    public GameObject BreadSection;
 
     [SerializeField] private TrollyAttachment TrolleyCodeManager;
 
     void Start()
     {
-        BreadSection.SetActive(false);
         targetPositions = new Vector2[jams.Length];
         targetScales = new Vector3[jams.Length];
 
@@ -78,7 +76,6 @@ public class JamCarousel : MonoBehaviour
             TrolleyCodeManager.EnablePlayerControls();
             MainCam.SetActive(true);
             JamCam.SetActive(false);
-            BreadSection.SetActive(true);
         }
         else
         {

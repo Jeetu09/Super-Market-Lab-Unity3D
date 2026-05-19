@@ -42,10 +42,10 @@ public class FruitSelection : MonoBehaviour
     private const int appleLimit = 1;
     private const int bananaLimit = 4;
 
+    SectionCount sectionCount;
+
     void Start()
     {
-       
-
         //JamManager.SetActive(false);
         conganimation.SetActive(false);
 
@@ -140,6 +140,7 @@ public class FruitSelection : MonoBehaviour
 
             Debug.Log("✅ Task Completed!");
             GuidingText.SetActive(false);
+            FindObjectOfType<SectionCount>().IncreaseFruitSectionCount();
 
             Invoke(nameof(ResumeControls), 2f);
         }
